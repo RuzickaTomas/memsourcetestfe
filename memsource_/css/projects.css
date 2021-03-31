@@ -1,0 +1,15 @@
+#tableWrap {
+	margin: 0 auto;
+	position: relative;
+}
+#projectsTable {
+	width: 25%;
+	text-align: center;
+	margin: 0 auto; 
+	position: relative;
+}
+
+#projectsTable tr:nth-child(1) td {
+	font-weight: bolder;
+	background-color: #efefef;
+}

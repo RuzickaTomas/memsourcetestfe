@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Setup</title>
+<link rel="stylesheet" href="./css/setup.css"  />
+</head>
+<body>
+
+<script src="./js/jquery.max.js"></script>	
+	<div id="formWrap">
+	<form id="loginForm" method="post" action="./projects.html" enctype='application/json'>
+		<input type="text" placeholder="uživatelské jméno" name="username" />
+		<input type="password" placeholder="heslo" name="password" />
+		<input type="submit" value="Odeslat" />
+	</form>
+	</div>
+	<script>
+	//on button submit is pressed get values from input, then send them to destination
+	$("#loginForm").submit(function(e) {
+	//prevent of default submit behavior - dont send empty form
+	e.preventDefault();
+	//get fist input value - username
+	let textValue = $("input[name='username']").val();
+	//get second input value - password
+	let passValue = $("input[name='password']").val();
+	
+	$.ajax({
+		url: "http://localhost:8080/memsourcetest/login",
+		type : 'POST',
+		contentType : 'application/json',
+		data: JSON.stringify( {"userName": textValue, "password": passValue, "code": "" })
+		,success: function(result) {
+		console.log(JSON.stringify(result) + '++');
+		if(result.user !== null) { location.href = "http://localhost:8080/memsource_/projects.html";};
+	}
+	});
+
+	}); 
+	
+
+	</script>
+</body>
+</html>

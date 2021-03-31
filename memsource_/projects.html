@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Projects</title>
+<link rel="stylesheet" href="./css/projects.css"  />
+</head>
+<body>
+
+<script src="./js/jquery.max.js"></script>
+	<div id="tableWrap">
+	<table id="projectsTable">
+		<tr>
+			<td>Název</td>
+			<td>Zdroj</td>
+			<td>Do</td>
+		</tr>
+	</table>
+	</div>
+	<script>
+//get all results from projects	
+$.get("http://localhost:8080/memsourcetest/projects", function( data ) {
+
+//get through data and find what should be displayed 
+data.forEach(d => { console.log(d.name + ' '+  d.sourceLang + ' ' + d.targetLangs );
+    let $tr = $('<tr>').append(
+            $('<td>').text(d.name),
+            $('<td>').text(d.sourceLang),
+            $('<td>').text(d.targetLangs)
+        ).appendTo('#projectsTable');
+});
+
+});
+
+	</script>
+<body>
+</html>
+
